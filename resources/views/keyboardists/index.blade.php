@@ -52,7 +52,13 @@
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <form action="/keyboardist/suspend/{{ $list->id }}" method="POST">
                     @csrf
-                    <button type="submit">Suspend</button> 
+
+                    @can('is_admin')
+                    <button type="submit" class="text-red-700">Suspend</button> 
+                      
+                    @endcan
+                      
+                    
                   </form>
                   {{-- <a href="" class="text-indigo-600 hover:text-indigo-900"></a> --}}
                 </td>
@@ -60,7 +66,9 @@
                   <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                 </td> --}}
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  @can('is_admin')
                   <a href="/keyboardist/edit/{{ $list->id }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                  @endcan
                 </td>
               </tr>
               @endforeach

@@ -27,9 +27,11 @@
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $list->name }}</td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $list->contact }}</td>
                   {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $list->region->name }}</td> --}}
+                  @can('is_admin')
                   <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                   </td>
+                  @endcan
                 </tr>
                 @endforeach
     

@@ -59,6 +59,20 @@
                       placeholder="Username">
                   
                     </div>
+                    <div class="w-full px-3">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" 
+                        for="region_id">
+                          Region
+                        </label>
+                      <select name="region" class="appearance-none block w-full bg-gray-200 text-gray-700 
+                        border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                        <option value="" selected disabled hidden class="px-2 py-2">Choose here</option>
+                          @foreach ( $regions as $region )
+                        <option value="{{ $region->id }}"
+                          class="mt-1 px-1 py-1">{{ $region->name }}</option>
+                      @endforeach
+                    </select>
+                    </div>
                   <div class="w-full px-3">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" 
                     for="altar_id">
@@ -71,34 +85,27 @@
                       <option value="{{ $altar->id }}">{{ $altar->name }}</option>
                     @endforeach
                     </select>
-                    
-                  </div>
-                  
-                  <div class="w-full px-3">
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" 
-                    for="region_id">
-                      Region
-                    </label>
-                    <select name="region" class="appearance-none block w-full bg-gray-200 text-gray-700 
-                    border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                    <option value="" selected disabled hidden class="px-2 py-2">Choose here</option>
-                    @foreach ( $regions as $region )
-                    <option value="{{ $region->id }}" class="mt-1 px-1 py-1">{{ $region->name }}</option>
-                  @endforeach
-                  </select>
-
                   </div>
                   <div class="w-full px-3">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" 
                     for="role">
                       Role
                     </label>
-                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded 
+                    <select name="role" id="role" class="appearance-none block w-full bg-gray-200 text-gray-700 
+                    border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                    <option value="" selected disabled hidden class="px-2 py-2">Choose Role</option>
+                    <option value="national_leader">National Leader</option>
+                    <option value="chief_governor">Chief Governor</option>
+                    <option value="governor">Governer</option>
+                    <option value="deputy_governor">Deputy Governor</option>
+                    <option value="vice_deputy_governor">Vice Deputy Governor</option>
+                    </select>
+                    {{-- <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded 
                     py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
                     id="role" 
                     name="role"
                     type="number" 
-                    placeholder="Role">
+                    placeholder="Role"> --}}
                 
                   </div>
                   <div class="w-full px-3">

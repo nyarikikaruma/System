@@ -22,42 +22,42 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login.login');
 })->middleware('guest');
 Route::get('/dashboard', [UserController::class, 'index'])->middleware('auth');
-Route::get('/keyboardist/create', [UserController::class, 'create']);
-Route::Post('/keyboardist/create', [UserController::class, 'store']);
-Route::get('/keyboardist/list', [UserController::class, 'show']);
-Route::Get('/keyboardist/edit/{id}', [UserController::class, 'edit']);
-Route::Post('/keyboardist/update/{id}', [UserController::class, 'update']);
-Route::Post('/keyboardist/suspend/{id}', [UserController::class, 'destroy']);
-Route::Get('/keyboardist/suspend', [UserController::class, 'suspended']);
-Route::Get('/keyboardist/restore/{id}', [UserController::class, 'restore']);
-Route::Get('/keyboardist/deregister/{id}', [UserController::class, 'deregister']);
+Route::get('/keyboardist/create', [UserController::class, 'create'])->middleware('auth');
+Route::Post('/keyboardist/create', [UserController::class, 'store'])->middleware('auth');
+Route::get('/keyboardist/list', [UserController::class, 'show'])->middleware('auth');
+Route::Get('/keyboardist/edit/{id}', [UserController::class, 'edit'])->middleware('auth');
+Route::Post('/keyboardist/update/{id}', [UserController::class, 'update'])->middleware('auth');
+Route::Post('/keyboardist/suspend/{id}', [UserController::class, 'destroy'])->middleware('auth');
+Route::Get('/keyboardist/suspend', [UserController::class, 'suspended'])->middleware('auth');
+Route::Get('/keyboardist/restore/{id}', [UserController::class, 'restore'])->middleware('auth');
+Route::Get('/keyboardist/deregister/{id}', [UserController::class, 'deregister'])->middleware('auth');
 
 Route::get('/register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
 
 Route::get('/login', [SessionController::class, 'create'])->middleware('guest');
 Route::post('/login', [SessionController::class, 'store']);
-Route::Post('/logout', [SessionController::class, 'destroy'])->middleware('auth');
+Route::post('/logout', [SessionController::class, 'destroy'])->middleware('auth');
 
-Route::get('/region/list', [RegionController::class, 'index']);
-Route::get('/region/create', [RegionController::class, 'create']);
-Route::post('/region/create', [RegionController::class, 'store']);
-Route::get('/region/edit/{id}', [RegionController::class, 'edit']);
-Route::post('/region/update/{id}', [RegionController::class, 'update']);
+Route::get('/region/list', [RegionController::class, 'index'])->middleware('auth');
+Route::get('/region/create', [RegionController::class, 'create'])->middleware('auth');
+Route::post('/region/create', [RegionController::class, 'store'])->middleware('auth');
+Route::get('/region/edit/{id}', [RegionController::class, 'edit'])->middleware('auth');
+Route::post('/region/update/{id}', [RegionController::class, 'update'])->middleware('auth');
 
-Route::get('/altar/list', [AltarController::class, 'index']);
-Route::get('/altar/create', [AltarController::class, 'create']);
-Route::post('/altar/create', [AltarController::class, 'store']);
-Route::get('/altar/edit/{id}', [AltarController::class, 'edit']);
-Route::post('/altar/update/{id}', [AltarController::class, 'update']);
+Route::get('/altar/list', [AltarController::class, 'index'])->middleware('auth');
+Route::get('/altar/create', [AltarController::class, 'create'])->middleware('auth');
+Route::post('/altar/create', [AltarController::class, 'store'])->middleware('auth');
+Route::get('/altar/edit/{id}', [AltarController::class, 'edit'])->middleware('auth');
+Route::post('/altar/update/{id}', [AltarController::class, 'update'])->middleware('auth');
 
-Route::get('/bishop/list', [BishopContoller::class, 'index']);
-Route::get('/bishop/create', [BishopContoller::class, 'create']);
-Route::post('/bishop/create', [BishopContoller::class, 'store']);
+Route::get('/bishop/list', [BishopContoller::class, 'index'])->middleware('auth');
+Route::get('/bishop/create', [BishopContoller::class, 'create'])->middleware('auth');
+Route::post('/bishop/create', [BishopContoller::class, 'store'])->middleware('auth');
 
-Route::post('/keyboardists/suspend', [SuspendAccountsController::class, 'create']);
+Route::post('/keyboardists/suspend', [SuspendAccountsController::class, 'create'])->middleware('auth');
 
 

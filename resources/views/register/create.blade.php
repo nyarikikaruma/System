@@ -43,14 +43,14 @@
         <label 
         for="role" 
         class="block mb-2 uppercase font-bold text-xs text-gray-700">Role</label>
+        <select name="role" id="role" class="appearance-none block w-full bg-gray-200 text-gray-700 
+                border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                <option value="" selected disabled hidden class="px-2 py-2">Choose Role</option>
+                <option value="1">Admin</option>
+                <option value="0">Keyboardist</option>
+                </select>
         
-        <input 
-        type="number" 
-        class="border border-gray-400 p-2 w-full rounded"
-        name="role"
-        placeholder="Enter your Role 1 or 0"
-        id="role"
-        required>
+        
         @error('role')
             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror

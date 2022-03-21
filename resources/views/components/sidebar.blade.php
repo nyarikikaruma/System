@@ -15,7 +15,8 @@
                   <span class="mx-4 font-medium">Home</span>
                 </a>
               </li>
-              
+              @can('is_admin')
+                
               <li>
                 <a class="flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200" href="/keyboardist/create">
                     <svg class="svg-icon" viewBox="0 0 20 20">
@@ -26,6 +27,7 @@
                   
                 </a>
               </li>
+              @endcan
               <li>
                 <a class="flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200" href="/keyboardist/list">
                     <svg class="svg-icon" viewBox="0 0 20 20">
@@ -36,6 +38,8 @@
                   
                 </a>
               </li>
+              @can('is_admin')
+                
               <li>
                 <a class="flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200" href="/region/create">
                     <svg class="svg-icon" viewBox="0 0 20 20">
@@ -45,6 +49,7 @@
                   <span class="mx-4 font-medium">Add Region</span>
                 </a>
               </li>
+              @endcan
               <li>
                 <a class="flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200" href="/region/list">
                     <svg class="svg-icon" viewBox="0 0 20 20">
@@ -54,7 +59,8 @@
                   <span class="mx-4 font-medium">Region</span>
                 </a>
               </li>
-
+              @can('is_admin')
+                
               <li>
                 <a class="flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200" href="/altar/create">
                     <svg class="svg-icon" viewBox="0 0 20 20">
@@ -64,6 +70,7 @@
                   <span class="mx-4 font-medium">Add Altar</span>
                 </a>
               </li>
+              @endcan
               <li>
                 <a class="flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200" href="/altar/list">
                     <svg class="svg-icon" viewBox="0 0 20 20">
@@ -82,6 +89,8 @@
                   <span class="mx-4 font-medium">Bishops</span>
                 </a>
               </li>
+              @can('is_admin')
+                
               <li>
                 <a class="flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200" href="/bishop/create">
                     <svg class="svg-icon" viewBox="0 0 20 20">
@@ -91,6 +100,7 @@
                   <span class="mx-4 font-medium">Add Bishop</span>
                 </a>
               </li>
+              @endcan
               <li>
                 <a class="flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200" href="#">
                     <svg class="svg-icon" viewBox="0 0 20 20">
@@ -127,6 +137,8 @@
                   <span class="mx-4 font-medium">Edit Profile</span>
                 </a>
               </li>
+              @can('is_admin')
+                
               <li>
                 <a class="flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200" href="/keyboardist/suspend">
                     <svg class="svg-icon" viewBox="0 0 20 20">
@@ -139,6 +151,7 @@
                   <span class="mx-4 font-medium">Suspended Accounts</span>
                 </a>
               </li>
+              @endcan
               
             </ul>
 

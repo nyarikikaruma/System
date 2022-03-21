@@ -7,6 +7,9 @@ use App\Models\Region;
 use App\Models\User;
 use App\Models\UserDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 
@@ -18,8 +21,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user= auth()->user();
-        // dd($user);
+        $main= auth()->user();
+
+        // dd($main);
+        // if($main->)
+        // dd($main['id']);
+        $user= User::with('userDetail')->findOrFail($main['id']);
+        // dd($main);
         return view('dashboard')->with('user', $user);
     }
 
@@ -30,14 +38,28 @@ class UserController extends Controller
      */
     public function create()
     {
-        $altars= Altar::all();
-        // dd($altars);
+        
         $regions= Region::all();
-        // dd($regions);
+        // dd($regions['0']);
+        // $altars= Altar::all();
+            // dd($altars);
+
+        foreach($regions as $region){
+
+            // dd($region['id']);
+
+            $altars= Altar::all();
+            // dd($altars);
+            // $altars = DB::table('altars')
+            //         ->where('region_id', $region['id'])
+            //         ->get();
+        }
+        // dd($altars); 
         return view('keyboardists.create', [
             'altars' => $altars,
             'regions' => $regions
         ]);
+
     }
 
     /**
@@ -80,7 +102,7 @@ class UserController extends Controller
 
         // dd($attributes);
 
-        return redirect('/dashboard');
+        return redirect('/keyboardist/list');
         
     }
 
@@ -92,6 +114,11 @@ class UserController extends Controller
      */
     public function show()
     {
+        $main= Auth::user();
+        // dd($main['role']);
+        // if($main['role']==){
+
+        // }
         $lists = User::with('userDetail')->get();
         // dd($lists);
         // dd($lists[0]->userDetail);
@@ -109,9 +136,13 @@ class UserController extends Controller
     public function edit($id)
     {
         $user= User::with('userDetail')->findOrFail($id);
+        $altars= Altar::all();
+        $regions= Region::all();
         // dd($user);
         return view('keyboardists.edit', [
-            'user' => $user
+            'user' => $user,
+            'altars' => $altars,
+            'regions' => $regions
         ]);
 
     }
@@ -125,6 +156,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        
         $user= User::with('userDetail')->findOrFail($id);
         // dd($user);
 
@@ -150,7 +183,7 @@ class UserController extends Controller
         $attributes['thumbnail']=$newImageName;
         $attributes['password']= bcrypt($attributes['password']);
         
-        $main =  User::where('id', $id)->update([
+        User::where('id', $id)->update([
            'name' => $attributes['name'],
            'email' => $attributes['email'],
             'username' => $attributes['username'],
@@ -163,7 +196,7 @@ class UserController extends Controller
         // dd($attributes);
         $attributes['user_id'] = $id;
         // dd($attributes);
-        $main =  UserDetail::where('user_id', $id)->update([
+       UserDetail::where('user_id', $id)->update([
             'altar' => $attributes['altar'],
             'region' => $attributes['region'],
              'thumbnail' => $attributes['thumbnail'],
@@ -174,7 +207,7 @@ class UserController extends Controller
 
         // dd($attributes);
 
-        return redirect('/dashboard');
+        return redirect('/keyboardist/list');
     }
 
     /**
@@ -188,7 +221,7 @@ class UserController extends Controller
         // dd($id);
         User::find($id)->delete();
   
-        return redirect('/dashboard');
+        return redirect('/keyboardist/list');
     }
 
     public function suspended(){
@@ -203,14 +236,14 @@ class UserController extends Controller
 
         User::withTrashed()->find($id)->restore();
   
-        return redirect('/keyboardist/list');
+        return redirect('/keyboardist/suspend');
     }
 
     public function deregister($id){
 
         User::withTrashed()->find($id)->forceDelete();
         
-        return redirect('/keyboardist/list'); 
+        return redirect('/keyboardist/suspend'); 
     }
 
 }

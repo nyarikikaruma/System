@@ -11,7 +11,7 @@
             
             <div class="flex mt-8 mx-auto justified-center mb-8 p-4">
 
-                <h1 class=" font-bold underline  text-cyan-800 text-4xl">Add Keyboardist</h1>
+                <h1 class=" font-bold underline  text-cyan-800 text-4xl">Edit Keyboardist</h1>
 
             </div>
 
@@ -60,55 +60,65 @@
                     value="{{ $user->username }}">
                 
                   </div>
-                <div class="w-full px-3">
-                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" 
-                  for="altar_id">
-                    Altar ID
-                  </label>
-                  <input class="appearance-none block w-full bg-gray-200 text-gray-700 
-                  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
-                  id="altar_id" 
-                  name="altar"
-                  type="text" 
-                  value="{{ $user->userDetail->altar }}">
-                </div>
-                {{-- <div class="w-full px-3">
-                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" 
-                  for="user_id">
-                    UserID
-                  </label>
-                  <input class="appearance-none block w-full bg-gray-200 text-gray-700 
-                  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
-                  id="user_id" 
-                  name="user_id"
-                  type="text" 
-                  placeholder="ID">
-              
-                </div> --}}
+                  
                 <div class="w-full px-3">
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" 
                   for="region_id">
-                    Region ID
-                  </label>
-                  <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded 
-                  py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
-                  id="region_id" 
-                  name="region"
-                  type="text" 
-                  value="{{$user->userDetail->region}}">
-              
-                </div>
+                  Region ID
+                </label>
+                <select name="region" id="cars" class="appearance-none block w-full bg-gray-200 text-gray-700 
+                    border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                    <option value="{{ $user->userDetail->region }}">{{ App\Models\Region::find($user->userDetail->region)->name  }}</option>
+                    @foreach ( $regions as $region )
+                      <option value="{{ $region->id }}">{{ $region->name  }}</option>
+                    @endforeach
+                    </select>
+               
+              </div>
+
+              <div class="w-full px-3">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" 
+                for="altar_id">
+                  Altar ID
+                </label>
+                <select name="altar" id="cars" class="appearance-none block w-full bg-gray-200 text-gray-700 
+                    border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                    <option value="{{ $user->userDetail->altar }}">{{ App\Models\Altar::find($user->userDetail->altar)->name  }}</option>
+                    @foreach ( $altars as $altar )
+                      <option value="{{ $altar->id }}">{{ $altar->name  }}</option>
+                    @endforeach
+                    </select>
+               
+              </div>
+
                 <div class="w-full px-3">
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" 
                   for="role">
                     Role
                   </label>
-                  <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded 
+                  <select name="role" id="cars" class="appearance-none block w-full bg-gray-200 text-gray-700 
+                  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                  {{-- <option value="{{ $user->userDetail->role }}" selected disabled hidden class="px-2 py-2">{{ App\Models\Altar::find($user->userDetail->altar)->name  }}</option> --}}
+                  {{-- @foreach ( $altars as $altar ) --}}
+                    <option value="{{ $user->role }}"><?php 
+                      $role="{{ $user->role }}";
+                       if ($role==1) {
+                          $role="Admin";
+                         }
+                         else {
+                            $role="Keyboardist";
+                          }          
+               ?>{{ $role }}</option>
+                    <option value="1">Admin</option>
+                    <option value="0">Keyboardst</option>
+                  {{-- @endforeach --}}
+                  </select>
+                  {{-- <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded 
                   py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
                   id="role" 
                   name="role"
                   type="number" 
-                  value="{{ $user->role }}">
+                  value="{{ $user->role }}"> --}}
               
                 </div>
                 <div class="w-full px-3">
