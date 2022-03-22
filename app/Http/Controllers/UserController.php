@@ -21,6 +21,8 @@ class UserController extends Controller
      */
     public function index()
     {
+    //    dd( Auth::user()->id );
+
         $main= auth()->user();
 
         // dd($main);

@@ -219,14 +219,27 @@
 
     </div>
 
-          <div class="w-3/4">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam eaque officia, ea nobis minima mollitia dolore delectus! Harum blanditiis alias
-            id reiciendis vero eius? Officia officiis magni doloribus rerum eveniet impedit, nulla deleniti, esse quas ad ipsa voluptates mollitia maiores
-              quasi. Inventore exercitationem sed, explicabo ducimus voluptatum at voluptate accusamus doloribus quibusdam! Praesentium soluta fuga, 
-              voluptates neque dignissimos assumenda ut animi blanditiis minus modi optio aut quas accusamus aliquid consequatur laudantium culpa, 
-              magnam a maxime voluptatem doloremque dolores magni! Quo, illo quaerat. Et voluptas dolorem quisquam saepe ea molestiae quis veniam 
-              fugiat? Ad laboriosam quidem nobis sit eveniet quod quaerat!
+      <div class="w-3/4 mt-8">
+        <div class="text-blue-700 font-bold flex justify-center">YOUR PROFILE </div>
+          <div class="flex justify-center">
+            <div><img class="block mx-auto sm:mx-0 sm:flex-shrink-0 h-10 sm:h-10 rounded-full" src="{{ asset('images/' . $user->userDetail->thumbnail) }}" alt="Woman's Face"> </div> 
+            <div>
+
+              <div class=" flex justify-center ">
+               <div> Your Profile</div>
+              </div>
+              <div class="flex justify-center">
+               {{$user->name}}</div> 
+               <div class="flex justify-center">
+               {{ $user->userDetail->contact }}</div> 
+               <div class="flex justify-center">
+               {{ \App\Models\Altar::find($user->userDetail->altar)->name }}</div> 
+               <div class="flex justify-center">
+               {{ \App\Models\Region::find($user->userDetail->region)->name }}</div> 
+              
+             </div>
             </div>
+      </div>  
     </div>
 
 

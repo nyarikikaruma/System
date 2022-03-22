@@ -46,11 +46,22 @@
 
     </div>
 
-      
+    @auth
     <div class="flex items-center justify-between">
-      <input type="text" class="border border-gray-300 rounded h-8 w-48 bg-blue-300 hover:bg-gray-300 mr-5 p-3 text-blue-600" placeholder="Search /">
-      <a href="/logout" class="px-2 py-1 border border-gray-200 bg-blue-400 rounded-md hover:bg-blue-400 mr-4 text-blue-200">Logout</a>
+     <div class="flex items-center mr-2">
+      {{-- {{ Auth::user()->userDetail->thumbnail }} --}}
+       <img src="{{ asset( 'images/' . Auth::user()->userDetail->thumbnail) }}" alt="No image" 
+       class="h-10 w-10 rounded-full">
+       {{ Auth::user()->name }}
+     </div>
+      {{-- <input type="text" class="border border-gray-300 rounded h-8 w-48 bg-blue-300 hover:bg-gray-300 mr-5 p-3 text-blue-600" placeholder="Search /"> --}}
+      <form action="/logout" method="POST" id="logout-form">
+        <button class="px-2 py-1 border border-gray-200 bg-blue-400 rounded-md hover:bg-blue-400 mr-4 text-blue-200">Logout</button>
+        @csrf
+        </form>
     </div>
+      
+    @endauth  
   </nav>
    
   {{-- Main Body --}}
