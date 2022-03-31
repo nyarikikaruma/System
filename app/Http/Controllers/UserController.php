@@ -6,10 +6,15 @@ use App\Models\Altar;
 use App\Models\Region;
 use App\Models\User;
 use App\Models\UserDetail;
+use App\Notifications\ExcommunicationNotification;
+use App\Notifications\KeyboardistCreateNotification;
+use App\Notifications\RestoreNotifications;
+use App\Notifications\SuspendNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Notification;
 
 class UserController extends Controller
 
@@ -102,11 +107,27 @@ class UserController extends Controller
         UserDetail::create($attributes);
 
 
-        // dd($attributes);
+        $users = User::select("*")
 
+        ->where("role", "=", "national_leader" )
+        ->orWhere("role", "=", "chief_governor" )
+        ->orWhere("role", "=", "deputy_governor" )
+        ->orWhere("role", "=", "vice_deputy_governor" )
+        ->orWhere("role", "=", "governor" )
+
+
+        
+        ->get();
+        
+        foreach($users as $user) {
+
+            Notification::send($user, new KeyboardistCreateNotification($user));
+               
+        }
         return redirect('/keyboardist/list');
         
     }
+
 
     /**
      * Display the specified resource.
@@ -121,7 +142,7 @@ class UserController extends Controller
         // if($main['role']==){
 
         // }
-        $lists = User::with('userDetail')->get();
+        $lists = User::with('userDetail')->paginate(10);
         // dd($lists);
         // dd($lists[0]->userDetail);
         return view('keyboardists.index', [
@@ -221,7 +242,28 @@ class UserController extends Controller
     public function destroy($id)
     {
         // dd($id);
+        $user= User::all();
         User::find($id)->delete();
+
+       
+        $users = User::select("*")
+
+        ->where("role", "=", "national_leader" )
+        ->orWhere("role", "=", "chief_governor" )
+        ->orWhere("role", "=", "deputy_governor" )
+        ->orWhere("role", "=", "vice_deputy_governor" )
+        ->orWhere("role", "=", "governor" )
+        ->get();
+        
+        foreach($users as $user) {
+
+            Notification::send($user, new SuspendNotification($user));
+               
+        }
+        
+        
+        
+        // dd($user);
   
         return redirect('/keyboardist/list');
     }
@@ -237,6 +279,21 @@ class UserController extends Controller
     public function restore($id){
 
         User::withTrashed()->find($id)->restore();
+
+        $users = User::select("*")
+
+        ->where("role", "=", "national_leader" )
+        ->orWhere("role", "=", "chief_governor" )
+        ->orWhere("role", "=", "deputy_governor" )
+        ->orWhere("role", "=", "vice_deputy_governor" )
+        ->orWhere("role", "=", "governor" )
+        ->get();
+        
+        foreach($users as $user) {
+
+            Notification::send($user, new RestoreNotifications($user));
+               
+        }
   
         return redirect('/keyboardist/suspend');
     }
@@ -244,6 +301,21 @@ class UserController extends Controller
     public function deregister($id){
 
         User::withTrashed()->find($id)->forceDelete();
+
+        $users = User::select("*")
+
+        ->where("role", "=", "national_leader" )
+        ->orWhere("role", "=", "chief_governor" )
+        ->orWhere("role", "=", "deputy_governor" )
+        ->orWhere("role", "=", "vice_deputy_governor" )
+        ->orWhere("role", "=", "governor" )
+        ->get();
+        
+        foreach($users as $user) {
+
+            Notification::send($user, new ExcommunicationNotification($user));
+               
+        }
         
         return redirect('/keyboardist/suspend'); 
     }

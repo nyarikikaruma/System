@@ -16,9 +16,11 @@
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Bishop Name</th>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
                   {{-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Region</th> --}}
+                  @can('is_national_leader')
                   <th scope="col" class="relative px-6 py-3">
                     <span class="sr-only">Edit</span>
                   </th>
+                  @endcan
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
@@ -27,7 +29,7 @@
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $list->name }}</td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $list->contact }}</td>
                   {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $list->region->name }}</td> --}}
-                  @can('is_admin')
+                  @can('is_national_leader')
                   <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                   </td>

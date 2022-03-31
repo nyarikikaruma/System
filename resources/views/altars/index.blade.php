@@ -17,9 +17,11 @@
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Altar Id</th>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Altar Name</th>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Altar Region </th>
+                  @can('is_national_leader')
                   <th scope="col" class="relative px-6 py-3">
                     <span class="sr-only">Edit</span>
                   </th>
+                  @endcan
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
@@ -28,7 +30,7 @@
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $list->id }}</td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $list->name }}</td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ \App\Models\Region::find( $list->region_id )->name }}</td>
-                  @can('is_admin')
+                  @can('is_national_leader')
                     
                   <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <a href="/altar/edit/{{ $list->id }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>

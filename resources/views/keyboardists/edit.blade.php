@@ -64,9 +64,9 @@
                 <div class="w-full px-3">
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" 
                   for="region_id">
-                  Region ID
+                  Region
                 </label>
-                <select name="region" id="cars" class="appearance-none block w-full bg-gray-200 text-gray-700 
+                <select name="region" id="region" class="appearance-none block w-full bg-gray-200 text-gray-700 
                     border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                     <option value="{{ $user->userDetail->region }}">{{ App\Models\Region::find($user->userDetail->region)->name  }}</option>
                     @foreach ( $regions as $region )
@@ -76,10 +76,37 @@
                
               </div>
 
+
               <div class="w-full px-3">
+                <label>Altar</label>
+                    <select id="altar" class="appearance-none block w-full bg-gray-200 text-gray-700 
+                    border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="altar" required disabled>
+                        @foreach ($altars as $altar)
+                            {{-- <option value="" selected disabled hidden class="px-2 py-2">Choose here</option> --}}
+                    <option value="{{ $user->userDetail->altar }}">{{ App\Models\Altar::find($user->userDetail->altar)->name  }}</option>
+
+                            <option value="{{ $altar->id }}" class='parent-{{ $altar->region_id }} subcategory'>{{ $altar->name }}</option>
+                        @endforeach
+                    </select>
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+                    <script>
+                    $('#region').on('change', function () {
+                      $("#altar").attr('disabled', false); //enable subcategory select
+                      $("#altar").val("");
+                      $(".subcategory").attr('disabled', true); //disable all category option
+                      $(".subcategory").hide(); //hide all subcategory option
+                      $(".parent-" + $(this).val()).attr('disabled', false); //enable subcategory of selected category/parent
+                      $(".parent-" + $(this).val()).show(); 
+                  });
+                  </script>
+
+                </div>
+
+              {{-- <div class="w-full px-3">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" 
                 for="altar_id">
-                  Altar ID
+                  Altar
                 </label>
                 <select name="altar" id="cars" class="appearance-none block w-full bg-gray-200 text-gray-700 
                     border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
@@ -89,7 +116,7 @@
                     @endforeach
                     </select>
                
-              </div>
+              </div> --}}
 
                 <div class="w-full px-3">
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" 
@@ -109,8 +136,11 @@
                             $role="Keyboardist";
                           }          
                ?>{{ $role }}</option>
-                    <option value="1">Admin</option>
-                    <option value="0">Keyboardst</option>
+                   <option value="national_leader">National Leader</option>
+                   <option value="chief_governor">Chief Governor</option>
+                   <option value="governor">Governer</option>
+                   <option value="deputy_governor">Deputy Governor</option>
+                   <option value="vice_deputy_governor">Vice Deputy Governor</option>
                   {{-- @endforeach --}}
                   </select>
                   {{-- <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded 

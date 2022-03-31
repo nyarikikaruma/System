@@ -3,6 +3,7 @@
 use App\Http\Controllers\AltarController;
 use App\Http\Controllers\BishopContoller;
 use App\Http\Controllers\KeyboardistController;
+use App\Http\Controllers\Notifications;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
@@ -31,6 +32,7 @@ Route::get('/keyboardist/list', [UserController::class, 'show'])->middleware('au
 Route::Get('/keyboardist/edit/{id}', [UserController::class, 'edit'])->middleware('auth');
 Route::Post('/keyboardist/update/{id}', [UserController::class, 'update'])->middleware('auth');
 Route::Post('/keyboardist/suspend/{id}', [UserController::class, 'destroy'])->middleware('auth');
+// Route::post('/keyboardists/suspend', [SuspendAccountsController::class, 'create'])->middleware('auth');
 Route::Get('/keyboardist/suspend', [UserController::class, 'suspended'])->middleware('auth');
 Route::Get('/keyboardist/restore/{id}', [UserController::class, 'restore'])->middleware('auth');
 Route::Get('/keyboardist/deregister/{id}', [UserController::class, 'deregister'])->middleware('auth');
@@ -58,6 +60,7 @@ Route::get('/bishop/list', [BishopContoller::class, 'index'])->middleware('auth'
 Route::get('/bishop/create', [BishopContoller::class, 'create'])->middleware('auth');
 Route::post('/bishop/create', [BishopContoller::class, 'store'])->middleware('auth');
 
-Route::post('/keyboardists/suspend', [SuspendAccountsController::class, 'create'])->middleware('auth');
+
+Route::get('/notifications', [Notifications::class, 'index'])->middleware('auth');
 
 

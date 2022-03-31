@@ -31,18 +31,25 @@
 }
 </style>
 </head>
-<body>
+<body class="h-screen">
 
   {{-- Navigation Bar --}}
   <nav class="sticky z-10 top-0 flex items-center justify-between bg-blue-500 h-16">
 
     <div class="flex items center px-4 py-4 font-semibold m-5 text-blue-200 ">
-    <ul>
-      <a href="#" class="hover:text-gray-100 mr-3">Home</a>
-      <a href="#" class="hover:text-gray-100 mr-3">Keyboardists</a>
-      <a href="#" class="hover:text-gray-100 mr-3">Leaders</a>
-      <a href="#" class="hover:text-gray-100 mr-3">Regions</a>
-    </ul>
+      @auth
+      <ul>
+        <a href="/" class="hover:text-gray-100 mr-3">Home</a>
+        <a href="#" class="hover:text-gray-100 mr-3">Keyboardists</a>
+        <a href="#" class="hover:text-gray-100 mr-3">Leaders</a>
+        <a href="#" class="hover:text-gray-100 mr-3">Regions</a>
+      </ul>
+      @endauth
+
+      @guest
+      <a href="#" class="hover:text-gray-100 mr-3 flex items-center">Welcome to Repentance and Holiness Keyboardists management susytem</a>
+        
+      @endguest
 
     </div>
 
