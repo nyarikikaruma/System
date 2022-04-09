@@ -43,6 +43,7 @@
               </tbody>
   
             </table>
+            {{ $lists->links() }}
           </div>
         </div>
       </div>

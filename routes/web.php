@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AltarController;
 use App\Http\Controllers\BishopContoller;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\KeyboardistController;
+use App\Http\Controllers\LeadersController;
 use App\Http\Controllers\Notifications;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\RegisterController;
@@ -61,6 +63,14 @@ Route::get('/bishop/create', [BishopContoller::class, 'create'])->middleware('au
 Route::post('/bishop/create', [BishopContoller::class, 'store'])->middleware('auth');
 
 
+Route::get('/leader', [LeadersController::class, 'index'])->middleware('auth');
+
+
 Route::get('/notifications', [Notifications::class, 'index'])->middleware('auth');
+
+// Get altars
+Route::get('/getaltar', [KeyboardistController::class, 'index'])->middleware('auth');
+// Chat
+Route::get('/messages', [ChatController::class, 'index'])->middleware('auth');
 
 

@@ -75,44 +75,43 @@
                     </div>
 
                     <div class="w-full px-3">
-                    <label>Altar</label>
                         <select id="altar" class="appearance-none block w-full bg-gray-200 text-gray-700 
-                        border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="altar" required disabled>
-                            @foreach ($altars as $altar)
-                                <option value="" selected disabled hidden class="px-2 py-2">Choose here</option>
-                                <option value="{{ $altar->id }}" class='parent-{{ $altar->region_id }} subcategory'>{{ $altar->name }}</option>
-                            @endforeach
+                        border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none 
+                        focus:bg-white focus:border-gray-500" name="altar" required>
+                           
                         </select>
-                        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-                        <script>
-                        $('#region').on('change', function () {
-                          $("#altar").attr('disabled', false); //enable subcategory select
-                          $("#altar").val("");
-                          $(".subcategory").attr('disabled', true); //disable all category option
-                          $(".subcategory").hide(); //hide all subcategory option
-                          $(".parent-" + $(this).val()).attr('disabled', false); //enable subcategory of selected category/parent
-                          $(".parent-" + $(this).val()).show(); 
-                      });
-                      </script>
+                      </select>
+                      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+                      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+                      <script type="text/javascript">
+                        $(document).ready(function () {
+                            $('#region').on('change', function () {
+                                var regionId = this.value;
+                                $('#altar').html('');
+                                $.ajax({
+                                    url: '{{ url('/getaltar') }}?region_id='+regionId,
+                                    type: 'get',
+                                    success: function (res) {
+                                        $('#altar').html('<option value="">Select altar</option>');
+                                        $.each(res, function (key, value) {
+                                            $('#altar').append('<option value="' + value
+                                                .id + '">' + value.name + '</option>');
+                                        });
+                                        
+                                    }
+                                });
+                            });
+                            
+                        });
+                    </script>
+  
 
                     </div>
 
 
 
-                  {{-- <div class="w-full px-3">
-                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" 
-                          for="altar_id">
-                            Altar
-                      </label>
-                      <select name="altar" id="cars" class="appearance-none block w-full bg-gray-200 text-gray-700 
-                          border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                          <option value="" selected disabled hidden class="px-2 py-2">Choose here</option>
-                          @foreach ( $altars as $altar )
-                            <option value="{{ $altar->id }}">{{ $altar->name }}</option>
-                          @endforeach
-                      </select>
-                  </div> --}}
                   <div class="w-full px-3">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" 
                     for="role">

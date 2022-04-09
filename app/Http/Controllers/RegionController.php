@@ -15,7 +15,7 @@ class RegionController extends Controller
      */
     public function index()
     {
-        $lists= Region::all();
+        $lists= Region::simplePaginate(10);
         // dd($lists);
         return view('region.index', [
             'lists'=>$lists

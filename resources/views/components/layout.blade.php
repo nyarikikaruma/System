@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.1/dist/flowbite.min.css" />
 
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -41,7 +42,7 @@
       <ul>
         <a href="/" class="hover:text-gray-100 mr-3">Home</a>
         <a href="#" class="hover:text-gray-100 mr-3">Keyboardists</a>
-        <a href="#" class="hover:text-gray-100 mr-3">Leaders</a>
+        <a href="/leader" class="hover:text-gray-100 mr-3">Leaders</a>
         <a href="#" class="hover:text-gray-100 mr-3">Regions</a>
       </ul>
       @endauth
@@ -80,5 +81,7 @@
         <a class="text-gray-800" href="https://repentanceandholiness.org/">Repentance and Holiness Ministry</a>
       </div>
     </footer>
+
+    <script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></script>
 </body>
 </html>

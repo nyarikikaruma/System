@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Notifications extends Controller
 {
@@ -14,13 +16,14 @@ class Notifications extends Controller
     public function index()
     {
 
-        $notifications = auth()->user()->unreadNotifications;
+        $user =Auth::user();
+        // $notifications = auth()->user()->unreadNotifications->paginate(10);
 
-        $readNotifications= auth()->user()->readNotifications;
+        // $readNotifications= auth()->user()->readNotifications()->paginate(10);
 
         // return view('home', compact('notifications'));
         // dd($notifications);
-        return view('notifications.index', compact('notifications', 'readNotifications'));
+        return view('notifications.index', compact('user'));
     }
 
     /**

@@ -49,20 +49,20 @@
     
 </div> --}}
 <x-layout>
-  <div class="container flex px-4 py-4 bg-blue-300">
+  <div class="flex bg-blue-300">
 
   
-    <div class="w-1/4 mr-16 bg-blue-200 p-3 items-center">
+    <div class="w-1/4 bg-blue-800 items-center rounded">
          
     <div class="pt-12 lg:flex">
-      <div class="flex flex-col w-full px-4 py-8 overflow-y-auto border-b lg:border-r lg:h-screen lg:w-64">
+      <div class=" px-4 py-8   lg:border-r lg:h-screen lg:w-64">
 
 
-        <div class="flex flex-col justify-between mt-6">
+        {{-- <div class="flex flex-col justify-between mt-6">
           <aside class="h-full">
             <ul>
               <li>
-                <a class="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-md " href="/dashboard">
+                <a class="flex items-center px-4 py-2 text-gray-700 bg-blue-300 rounded-md " href="/dashboard">
                     <svg class="svg-icon" viewBox="0 0 20 20">
                         <path d="M18.121,9.88l-7.832-7.836c-0.155-0.158-0.428-0.155-0.584,0L1.842,9.913c-0.262,0.263-0.073,0.705,0.292,0.705h2.069v7.042c0,0.227,0.187,0.414,0.414,0.414h3.725c0.228,0,0.414-0.188,0.414-0.414v-3.313h2.483v3.313c0,0.227,0.187,0.414,0.413,0.414h3.726c0.229,0,0.414-0.188,0.414-0.414v-7.042h2.068h0.004C18.331,10.617,18.389,10.146,18.121,9.88 M14.963,17.245h-2.896v-3.313c0-0.229-0.186-0.415-0.414-0.415H8.342c-0.228,0-0.414,0.187-0.414,0.415v3.313H5.032v-6.628h9.931V17.245z M3.133,9.79l6.864-6.868l6.867,6.868H3.133z"></path>
                     </svg>
@@ -213,7 +213,152 @@
 
           </aside>
 
-        </div>
+        </div> --}}
+
+
+
+
+
+        <aside class="w-64" aria-label="Sidebar">
+          <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-blue-800">
+          <ul class="space-y-2">
+              <li>
+                  <a href="/dashboard" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white
+                   hover:bg-gray-100 dark:hover:bg-blue-700">
+                      <svg class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900
+                       dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" 
+                       xmlns="http://www.w3.org/2000/svg"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                       <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
+                      <span class="ml-3">Dashboard</span>
+                  </a>
+              </li>
+              @can('is_national_leader')
+                <li>
+                    <a href="/keyboardist/create" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white 
+                    hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" 
+                    class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0
+                       11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                    </svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Add Keyboardist</span>
+                        
+                    </a>
+                </li>
+                @endcan
+                <li>
+                      <a href="/keyboardist/list" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white
+                      hover:bg-gray-100 dark:hover:bg-gray-700">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" 
+                      stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 
+                        21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                      </svg>
+                            <span class="flex-1 ml-3 whitespace-nowrap">Keyboardists List</span>
+                      </a>
+                </li>
+                @can('is_national_leader')
+                <li>
+                  <a href="/region/create" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white
+                  hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" 
+                  stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 
+                    9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Add Region</span>
+                  </a>
+                </li>
+                @endcan
+                <li>
+                  <a href="/region/list" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white 
+                  hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" 
+                  stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                  </svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Region List</span>
+                  </a>
+                </li>
+                @can('is_national_leader')
+                <li>
+                  <a href="/altar/create" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white
+                  hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" 
+                  stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0
+                     11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Add Altar</span>
+                  </a>
+                </li>
+                @endcan
+                <li>
+                  <a href="/altar/list" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white 
+                  hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" 
+                  stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                  </svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Altars List</span>
+                  </a>
+              </li>
+              @can('is_national_leader')
+                <li>
+                  <a href="/bishop/create" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white 
+                  hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" 
+                  stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 
+                    11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Add Bishops</span>
+                  </a>
+              </li>
+              @endcan
+              <li>
+                  <a href="/bishop/list" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white
+                   hover:bg-gray-100 dark:hover:bg-gray-700">
+                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" 
+                   stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                  </svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">DABs/Bishops List </span>
+                  </a>
+              </li>
+              @can('is_national_leader')
+              <li>
+                  <a href="/notifications" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white
+                   hover:bg-gray-100 dark:hover:bg-gray-700">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" 
+                      stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 
+                        0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0
+                         .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                      </svg>
+                      <span class="flex-1 ml-3 whitespace-nowrap">Notifications</span>
+                  </a>
+              </li>
+              @endcan
+              <li>
+                  <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white
+                   hover:bg-gray-100 dark:hover:bg-gray-700">
+                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" 
+                   stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2
+                     2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 
+                     00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                  </svg>
+                      <span class="flex-1 ml-3 whitespace-nowrap">Chats</span>
+                  </a>
+              </li>
+          </ul>
+          </div>
+          </aside>
+          
+
+
+
       </div>
      
     </div>

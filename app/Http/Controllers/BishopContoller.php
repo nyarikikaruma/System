@@ -15,7 +15,7 @@ class BishopContoller extends Controller
      */
     public function index()
     {
-        $lists= Bishop::with('region')->get();
+        $lists= Bishop::paginate(10);
         // dd($lists);
         return view('bishops.index', [
             'lists'=>$lists

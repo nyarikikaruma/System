@@ -36,11 +36,12 @@
                   @endcan
                 </tr>
                 @endforeach
-    
+                
                 <!-- More people... -->
               </tbody>
-  
+              
             </table>
+            {{ $lists->links() }}
           </div>
         </div>
       </div>

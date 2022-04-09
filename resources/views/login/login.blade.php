@@ -38,12 +38,27 @@
         @csrf
         <input type="hidden" name="remember" value="true">
         <div class="rounded-md shadow-sm -space-y-px">
-          <div class="py-6 px-4">
+          <div class="py-6 px-4 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+            class="h-5 w-5" fill="none" viewBox="0 0 24 24" 
+            stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" 
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
             <label for="email" class="sr-only">Email address</label>
-            <input id="email" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address">
+            <input id="email" name="email" type="email" autocomplete="email" required 
+            class="appearance-none rounded-none relative block w-full px-3 py-2 border 
+            border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none 
+            focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address">
           </div>
-          <div class="py-6 px-4">
-            <label for="password" class="sr-only">Password</label>
+          <div class="flex py-6 px-4 items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" 
+            fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" 
+              d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            <label for="password" class="sr-only">
+              Password</label>
             <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password">
           </div>
         </div>

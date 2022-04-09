@@ -16,7 +16,7 @@ class AltarController extends Controller
      */
     public function index()
     {
-        $lists= Altar::all();
+        $lists= Altar::paginate(8);
         return view('altars.index',[
             'lists'=>$lists
         ]);
