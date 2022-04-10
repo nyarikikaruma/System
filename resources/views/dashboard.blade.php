@@ -372,7 +372,7 @@
             <img src="{{ asset('images/' . $user->userDetail->thumbnail) }}" alt="..." class="shadow rounded-full max-w-full h-auto align-middle border-none" />
           </div>
         </div>
-        <div class="text-blue-700 font-bold flex justify-center">YOUR PROFILE </div>
+        {{-- <div class="text-blue-700 font-bold flex justify-center">YOUR PROFILE </div>
           <div class="flex justify-center">
             <div><img class="block mx-auto sm:mx-0 sm:flex-shrink-0 h-10 sm:h-10 rounded-full" src="{{ asset('images/' . $user->userDetail->thumbnail) }}" alt="Woman's Face"> </div> 
             <div>
@@ -385,13 +385,21 @@
                <div class="flex justify-center">
                {{ $user->userDetail->contact }}</div> 
                <div class="flex justify-center">
-               {{ \App\Models\Altar::find($user->userDetail->altar)->name }}</div> 
-               <div class="flex justify-center">
-               {{ \App\Models\Region::find($user->userDetail->region)->name }}</div> 
+                 @if(\App\Models\Altar::all())
+                   {{ \App\Models\Altar::find($user->userDetail->altar)->name }}</div> 
+                   <div class="flex justify-center">
+                   {{ \App\Models\Region::find($user->userDetail->region)->name }}</div> 
+                @else
+
+                  <h1>No Altars</h1>
+                
+                @endif
+                   
+                 
               
              </div>
             </div>
-      </div>  
+      </div>   --}}
     </div>
 
 

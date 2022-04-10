@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('login.login');
 })->middleware('guest');
 Route::get('/dashboard', [UserController::class, 'index'])->middleware('auth');
@@ -43,7 +43,7 @@ Route::get('/register', [RegisterController::class, 'create'])->middleware('gues
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
 
 Route::get('/login', [SessionController::class, 'create'])->middleware('guest');
-Route::post('/login', [SessionController::class, 'store']);
+Route::post('/login', [SessionController::class, 'store'])->middleware();
 Route::post('/logout', [SessionController::class, 'destroy'])->middleware('auth');
 
 Route::get('/region/list', [RegionController::class, 'index'])->middleware('auth');
